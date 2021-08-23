@@ -2,10 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import UploadForm from './comps/UploadForm'
+
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import Dashboard from './comps/Dashboard/Dashboard';
+import Preferences from './comps/Preferences/Preferences';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    
+    <BrowserRouter>
+        <Switch>
+            <Route exact path="/">
+                <h1>Application</h1>
+                <Link to="/dashboard"><p>Dashboard</p></Link>
+                <App />
+            </Route>
+            <Route path="/dashboard">
+                <Link to="/"><p>Home</p></Link>
+                <Dashboard/>
+                <Link to="/preferences"><p>Preferences</p></Link>
+                <UploadForm />
+                <App />
+            </Route>
+            <Route path="/preferences">
+                <Link to="/"><p>Home</p></Link>
+                <Preferences/>
+                <Link to="/dashboard"><p>Dashboard</p></Link>
+            </Route>
+        </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
